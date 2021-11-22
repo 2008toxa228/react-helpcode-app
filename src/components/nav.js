@@ -1,18 +1,19 @@
 import React from "react";
 // import "./css/nav.css"
 import { NavLink } from "react-router-dom";
+import { Routes } from "../common/constants";
 
 function Nav () {
     return (
         <nav>
             <div className="wrapper">
-                <NavLink activeClassName="selectedTab" className="tab" to="/posts">
+                <NavLink activeClassName="selectedTab" className="tab" to={Routes.POSTS + "/page/2"}>
                     Posts
                 </NavLink>
-                <NavLink activeClassName="selectedTab" className="tab" to="/categories">
+                <NavLink activeClassName="selectedTab" className="tab" to={Routes.CATEGORIES}>
                     Categories
                 </NavLink>
-                <NavLink activeClassName="selectedTab" className="tab" to="/users">
+                <NavLink activeClassName="selectedTab" className="tab" to={Routes.USERS}>
                     Users
                 </NavLink>
             </div>
