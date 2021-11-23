@@ -15,13 +15,17 @@ function PostsList(props) {
 
     if (!posts) {
         helpcodePostsService.GetPostsByBage(page, mapPosts);
-        console.log(posts);
+        // console.log(posts);
     }
+
+    useEffect(() => {
+        // console.log("mount on page", page);
+    });
 
     return (        
         <React.Fragment>
-        <PageSwitcher pageHook={page} setPageHook={setPage} />
             <div>(page: {page})</div>
+            <div>*beginning of content*</div>
             { 
                 posts 
                     ? posts.length 
@@ -29,24 +33,29 @@ function PostsList(props) {
                         : "page does not exist"
                     : <Loading />
             }
-            <div>end of content</div>
+            <div>*end of content*</div>
             <PageSwitcher pageHook={page} setPageHook={changePage} />
         </React.Fragment>
     );
     
-    function changePage(page) {
-        setPage(page);
+    function changePage(newPage) {
+        // console.log("changePage", newPage);
+        setPage(newPage);
         setPosts(null);
     }
 
-    function mapPosts(data) {
-        setPosts(data.map(post => (
-            <PostPreview
-                key={ post.Id + "preview" }
-                post={ post }
-            />)
-            )
-        );
+    function mapPosts(data, returnedPage) {
+        // console.log(page, returnedPage);
+        if (returnedPage == page) {
+            // console.log("equal");
+            setPosts(data.map(post => (
+                <PostPreview
+                    key={ post.Id + "preview" }
+                    post={ post }
+                />)
+                )
+            );
+        }
     }
 }
 

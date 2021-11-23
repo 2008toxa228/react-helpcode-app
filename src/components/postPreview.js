@@ -4,7 +4,7 @@ import "./css/postPreview.css";
 function PostPreview (props) {
     let post = props.post;
 
-    console.log(post);
+    // console.log(post);
 
     return (
         <div className="postPreview">

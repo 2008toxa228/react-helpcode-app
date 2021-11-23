@@ -3,6 +3,8 @@ import { NavLink, useParams, useRouteMatch } from "react-router-dom"
 import { Link } from "react-router-dom";
 import { Routes } from "../common/constants";
 import "./css/pageSwitcher.css"; 
+import { connect } from "react-redux";
+import { setPage, nextPage, previousPage, getPage } from "../redux/actions/actions";
 
 
 function PageSwitcher (props) {
@@ -13,11 +15,6 @@ function PageSwitcher (props) {
     if (!Number.isInteger(page)) {
         page = 0;
     }
-
-    // console.log(pageMatch);
-    // console.log(page);
-    // console.log(path);
-    // console.log(url);
     
     // ToDo rewrite link disabling when page is not avaliable
 
@@ -30,7 +27,7 @@ function PageSwitcher (props) {
 
     return (
         <div className="pageSwitcher">
-            <div className="wrapper">
+            {/* <div className="wrapper">
                 <NavLink to={`${path}/page/${Number(page) - 1}`}
                     className={page <= 0 ? "disabledLink" : ""}>
                     previous page
@@ -39,10 +36,44 @@ function PageSwitcher (props) {
                 <NavLink to={`${path}/page/${Number(page) + 1}`}>
                     next page
                 </NavLink>
+            </div> */}
+            <div className="wrapper">
+                <button onClick={() => (
+                    props.onPreviousPage(),
+                    console.log(props.page)
+                )}>prev</button>
+                
+                <div>cur: {props.page}</div>
+
+                <button onClick={() => (
+                    props.onNextPage(),
+                    console.log(props.page)
+                )}>next</button>
+                
+                <button onClick={() => (
+                    props.onSetPage(10),
+                    console.log(props.page)
+                )}>set 10</button>
             </div>
         </div>
         
     );
 }
 
-export default PageSwitcher
+function mapStateToProps(state) {
+    // console.log("mapStateToProps(state)", state);
+    return {
+        page: state.page,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onSetPage: page => dispatch(setPage(page)),
+        onNextPage: () => dispatch(nextPage()),
+        onPreviousPage: () => dispatch(previousPage()),
+        onGetPage: () => dispatch(getPage()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageSwitcher);
