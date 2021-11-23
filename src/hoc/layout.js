@@ -8,7 +8,7 @@ import PageSwitcher from "../components/pageSwitcher";
 function Layout (props) {
     return (
         <React.Fragment>
-            <Header headerTitle="//sitename"/>
+            <Header headerTitle="header"/>
             <Nav />
             <Main>
                 {props.children}

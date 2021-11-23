@@ -1,0 +1,12 @@
+.pageSwitcher {
+    display: flex;
+    flex-direction: column;
+    /* padding: 5px 0; */
+    background-color: #2d2d30;
+}
+.pageSwitcher .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

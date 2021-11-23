@@ -1,7 +1,8 @@
-import React from "react";
-import { useParams, useRouteMatch } from "react-router-dom"
+import React, { useEffect } from "react";
+import { NavLink, useParams, useRouteMatch } from "react-router-dom"
 import { Link } from "react-router-dom";
 import { Routes } from "../common/constants";
+import "./css/pageSwitcher.css"; 
 
 
 function PageSwitcher (props) {
@@ -20,13 +21,27 @@ function PageSwitcher (props) {
     
     // ToDo rewrite link disabling when page is not avaliable
 
+    useEffect(() => {
+        if (props.pageHook != page && props.setPageHook) {
+            // console.log(page, "calling setpage hook");
+            props.setPageHook(page);
+        }
+    })
+
     return (
         <div className="pageSwitcher">
-            <div className="pageSwitcherName">{props.name}</div>
-            <Link className={page <= 0 ? "disabledLink" : ""} to={`${path}/page/${Number(page) - 1}`}>previous page</Link>
-            <div className="pageNumber">current page: {page}</div>
-            <Link to={`${path}/page/${Number(page) + 1}`}>next page</Link>
+            <div className="wrapper">
+                <NavLink to={`${path}/page/${Number(page) - 1}`}
+                    className={page <= 0 ? "disabledLink" : ""}>
+                    previous page
+                </NavLink>
+                <div className="pageNumber">current page: {page}</div>
+                <NavLink to={`${path}/page/${Number(page) + 1}`}>
+                    next page
+                </NavLink>
+            </div>
         </div>
+        
     );
 }
 
