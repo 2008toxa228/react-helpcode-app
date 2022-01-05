@@ -1,7 +1,8 @@
 import axios from "axios";
-// readonly appconfig = window.config.app;
 
-const appconfig = window.config.app;
+var domain = "https://localhost:44319/";
+var apiRoute = "api/articles/";
+var pageSize = 2;
 
 const postsMock = [
     {
@@ -39,12 +40,15 @@ const postsMock = [
     },
 ]
 
-export function GetPostsByBage(page, callback) {
+export function GetPostsByBage(page, callback) {  
+    // console.log({page: page, start: page * pageSize, end: page * pageSize + pageSize}, "page");
     setTimeout(() => {
-        let posts = [...postsMock].splice(page * appconfig.pageSize, page * appconfig.pageSize + appconfig.pageSize);
-        callback(posts, page);
-    }, 2000);
-
+        let posts = [...postsMock].splice(page * pageSize, page * pageSize + pageSize);
+        console.log(page);
+        console.log(posts, "returned posts");
+        console.log(postsMock);
+        callback(posts);
+    }, 2000); 
     // let requestUrl = domain + apiRoute + `getarticlebyid?id=${id}`;
     // axios.get(requestUrl)
     // .then(function (response) {
