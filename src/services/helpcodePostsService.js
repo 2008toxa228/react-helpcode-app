@@ -41,7 +41,7 @@ function sleep(ms) {
 
 export const GetPostsByBage = async (page, callback) => {
     // page = Number(page) - 1;
-    let posts = [...postsMock].splice(page * appconfig.pageSize, page * appconfig.pageSize + appconfig.pageSize);
+    let posts = [...postsMock].splice(page * pageSize, page * pageSize + pageSize);
     await sleep(800);
     callback(posts);
     return;
