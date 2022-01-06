@@ -1,62 +1,56 @@
 import React, { useEffect, useState } from "react";
-import { useRouteMatch, useParams } from "react-router-dom";
-import { Routes } from "../common/constants";
+// import { useRouteMatch, useParams } from "react-router-dom";
 import PageSwitcher from "../components/pageSwitcher";
 import PostPreview from "../components/postPreview";
 import * as helpcodePostsService from "../services/helpcodePostsService";
 import Loading from "../components/loading"
+import { connect } from "react-redux";
 
-
-function PostsList(props) {
-    const [posts, setPosts] = useState();
-    const [page, setPage] = useState();
-    let { path, url } = useRouteMatch();
-
-
-    if (!posts) {
-        helpcodePostsService.GetPostsByBage(page, mapPosts);
-        // console.log(posts);
-    }
+function PostsList(props) {    
+    const [posts, setPosts] = useState(undefined);
+    // const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        // console.log("mount on page", page);
-    });
+        if (!posts) {
+            helpcodePostsService.GetPostsByBage(props.page, setPosts);
+        }
+        console.log(posts);
+    })
 
     return (        
         <React.Fragment>
-            <div>(page: {page})</div>
+            <div>(page: {props.page})</div>
             <div>*beginning of content*</div>
             { 
                 posts 
                     ? posts.length 
-                        ? posts
+                        ? mapPosts(posts)
                         : "page does not exist"
                     : <Loading />
             }
             <div>*end of content*</div>
-            <PageSwitcher pageHook={page} setPageHook={changePage} />
+            <PageSwitcher /*isLoading={isLoading} onPageChange={loadPostsByPage}*/ />
         </React.Fragment>
     );
-    
-    function changePage(newPage) {
-        // console.log("changePage", newPage);
-        setPage(newPage);
-        setPosts(null);
-    }
 
-    function mapPosts(data, returnedPage) {
-        // console.log(page, returnedPage);
-        if (returnedPage == page) {
-            // console.log("equal");
-            setPosts(data.map(post => (
-                <PostPreview
-                    key={ post.Id + "preview" }
-                    post={ post }
-                />)
-                )
-            );
-        }
+    function mapPosts(data) {        
+        return (data.map(post => (
+            <PostPreview
+                key={ post.Id + "preview" }
+                post={ post }
+            />)
+            )
+        );
+    }
+}
+function mapStateToProps(state) {
+    return {
+        page: state.pageReducer.page,
     }
 }
 
-export default PostsList
+function mapDispatchToProps(dispatch) {
+    return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsList);

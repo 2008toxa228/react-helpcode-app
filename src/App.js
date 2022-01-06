@@ -1,5 +1,3 @@
-import Header from './components/header'
-import Footer from './components/footer'
 import PostsList from './hoc/postsList'
 import {Route, Switch, Redirect} from "react-router-dom";
 import React from 'react';

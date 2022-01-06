@@ -1,4 +1,4 @@
-import { SET_PAGE, NEXT_PAGE, PREVIOUS_PAGE, GET_PAGE } from "./actionTypes"
+import { SET_PAGE, NEXT_PAGE, PREVIOUS_PAGE, SET_POSTS_PREVIEWS, GET_PAGE } from "./actionTypes"
 
 export function setPage(number) {
     return {
@@ -19,8 +19,9 @@ export function previousPage() {
     };
 }
 
-export function getPage() {
+export function setPostsPreviews(posts) {
     return {
-        type: GET_PAGE
-    }
+        type: SET_POSTS_PREVIEWS,
+        payload: posts
+    };
 }

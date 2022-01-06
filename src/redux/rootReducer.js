@@ -1,9 +1,11 @@
-// import {combineReducers} from 'redux'
+import {combineReducers} from 'redux'
 
-import pageReducer from './reducers/pageReducer'
+import PageReducer from './reducers/pageReducer'
+import PostsPreviewsReducer from './reducers/postsPreviewsReducer';
 
-export default pageReducer;
+// export default pageReducer;
 
-// export default combineReducers({
-//   pageReducer
-// })
+export default combineReducers({
+  pageReducer: PageReducer,
+  postsPreviewsReducer: PostsPreviewsReducer
+})

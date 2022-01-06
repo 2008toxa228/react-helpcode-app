@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {createStore, compose, applyMiddleware} from "redux";
+import {createStore/*, compose, applyMiddleware*/} from "redux";
 import rootReducer from "./redux/rootReducer";
 import {Provider} from "react-redux";
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 
 // const composeEnhancers =
 //   typeof window === 'object' &&
