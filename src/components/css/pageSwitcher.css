@@ -2,24 +2,43 @@
     display: flex;
     flex-direction: column;
     /* padding: 5px 0; */
-    background-color: #2d2d30;
-    padding: 5px;
+    /* background-color: #2d2d30; */
+    /* padding: 5px; */
+    justify-content: center;
 }
+
+.paginationWrapper {
+  display: flex;
+  /* justify-content: center; */
+}
+
 .paginationWrapper .page-item{
-    padding: 0px 5px;
+  background-color: rgba(255, 255, 255, 0.027);
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
   }
   .paginationWrapper .active{
-    background-color: gray;
-    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.123);
+    border: 1px solid gray;
   }
   
   .paginationWrapper ul {
     display: inline-block;
     margin: 0;
+    padding: 0;
     /* padding-left: 18px;
     padding-right: 18px; */
   }
   
   .paginationWrapper li {
     display: inline-block;
+  }
+  .paginationWrapper li > a {
+    padding: 5px 10px !important;
+  }
+
+  .paginationWrapper a, .paginationWrapper a:visited{
+    color: white;
+    text-decoration: none;
   }

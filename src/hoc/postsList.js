@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from "react";
-// import { useRouteMatch, useParams } from "react-router-dom";
 import PageSwitcher from "../components/pageSwitcher";
 import PostPreview from "../components/postPreview";
 import * as helpcodePostsService from "../services/helpcodePostsService";
 import Loading from "../components/loading"
 import { connect } from "react-redux";
 
-function PostsList(props) {    
+function PostsList(props) {
     const [posts, setPosts] = useState(undefined);
-    // const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        console.log("useEffect was called");
         if (!posts) {
-            helpcodePostsService.GetPostsByBage(props.page, setPosts);
+            console.log("request for page",props.page);
+            helpcodePostsService.GetPostsByBage(props.page-1, setPosts);
         }
-        console.log(posts);
+        console.log("posts", posts);
     })
 
     return (        
         <React.Fragment>
-            <div>(page: {props.page})</div>
-            <div>*beginning of content*</div>
             { 
                 posts 
                     ? posts.length 
                         ? mapPosts(posts)
-                        : "page does not exist"
+                        : <div>page does not exist</div>
                     : <Loading />
             }
-            <div>*end of content*</div>
-            <PageSwitcher /*isLoading={isLoading} onPageChange={loadPostsByPage}*/ />
+            <PageSwitcher />
         </React.Fragment>
     );
 

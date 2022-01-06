@@ -6,16 +6,17 @@ import { connect } from "react-redux";
 import { setPage, nextPage, previousPage } from "../redux/actions/actions";
 import ReactPaginate from "react-paginate";
 import Pagination from "../common/pagination";
+import { Routes } from "../common/constants";
 
 
 function PageSwitcher (props) {
-    let pageMatch = useRouteMatch("*/page/:page");
+    let pageMatch = useRouteMatch("*" + Routes.POSTSBYPAGE);
     let { path } = useRouteMatch();
     const history = useHistory();
 
     let page = Number(pageMatch?.params?.page);
     if (!Number.isInteger(page)) {
-        page = 0;
+        page = 1;
     }
     
     // ToDo rewrite link disabling when page is not avaliable
@@ -26,19 +27,17 @@ function PageSwitcher (props) {
         }
     })
     
-    const handlePageClick = (data) => {
-        // window.location=`${path}/page/${data.selected+1}`;
-        history.push(`${path}/page/${data.selected+1}`);
-        // window.location.reload();
-    };
+    // const handlePageClick = (data) => {
+    //     history.push(`${path}/page/${data.selected+1}`);
+    // };
 
     return (
         <div className="pageSwitcher">
             <div className="paginationWrapper">
-            <Pagination
-                count={10}
-                current={page} 
-                path={`${path}/page/`} 
+                <Pagination
+                    count={10}
+                    current={page} 
+                    path={`${path}/page/`} 
                 />
             
             </div>

@@ -3,6 +3,7 @@ html {
   background-color: #1e1e1e;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   color: white;
+  text-align: justify;
 }
 
 html, body, #root {
@@ -26,4 +27,14 @@ html, body, #root {
 .disabledLink {
   pointer-events: none;
   color: red;
+}
+
+.postTitle, .postTitle a, .postTitle a:visited {
+  color: #4ac6b0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.postTitle a:hover {
+  color: #86fce6;
 }

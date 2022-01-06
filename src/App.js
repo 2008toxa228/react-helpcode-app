@@ -3,11 +3,13 @@ import {Route, Switch, Redirect} from "react-router-dom";
 import React from 'react';
 import Layout from './hoc/layout';
 import { Routes } from "./common/constants"
+import Post from './components/post';
 
 function App() {
     return (
         <Layout>
             <Switch>
+                <Route forceRefresh path={Routes.POSTBYID} exact component={ Post } />
                 <Route forceRefresh path={Routes.POSTS} component={ PostsList } />
                 <Route forceRefresh path={Routes.CATEGORIES} component={ PostsList } />
                 <Route forceRefresh path={Routes.USERS} component={ PostsList } />

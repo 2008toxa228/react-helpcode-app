@@ -1,16 +1,17 @@
 import React from "react";
 import "./css/postPreview.css";
+import { PostConstants } from "../common/constants";
+import { NavLink } from "react-router-dom";
 
 function PostPreview (props) {
     let post = props.post;
 
-    // console.log(post);
-
     return (
         <div className="postPreview">
-            postPreview
-            <div>Title: {post.Title}</div>
-            <div>Content: {post.Content}</div>
+            <div className="postTitle">
+                <NavLink to={"/post/" + post.Id}>{post.Title}</NavLink>
+            </div>
+            <div className="postPreviewContent">{post.Content.substring(0, PostConstants.PREVIEWCONTENTMAXLENGTH) + '...'}</div>
         </div>
     );
 }

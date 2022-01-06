@@ -7,36 +7,30 @@ const appconfig = window.config.app;
 const postsMock = [
     {
         Id: "post1",
+        OwnerUserId: "user1",
+        StatusCode: "0",
         Title: "Post1",
-        Content: "post content1",
-        Score: "4",
+        Content: "post1 content1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         ViewCount: "123",
-        CreationDate: "1988-03-21",
         ClosedDate: "",
-        LastEditDate: "1989-03-21",
-        LastActivityDate: "1990-03-21",
     },
     {
         Id: "post2",
+        OwnerUserId: "user2",
+        StatusCode: "0",
         Title: "Post2",
-        Content: "pos2 content1",
-        Score: "4",
-        ViewCount: "123",
-        CreationDate: "1988-03-21",
+        Content: "post2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        ViewCount: "56",
         ClosedDate: "",
-        LastEditDate: "1989-03-21",
-        LastActivityDate: "1990-03-21",
     },
     {
         Id: "post3",
+        OwnerUserId: "user1",
+        StatusCode: "0",
         Title: "Post3",
-        Content: "post3 content",
-        Score: "4",
-        ViewCount: "123",
-        CreationDate: "1988-03-21",
+        Content: "3asdas313123 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        ViewCount: "321",
         ClosedDate: "",
-        LastEditDate: "1989-03-21",
-        LastActivityDate: "1990-03-21",
     },
 ]
 function sleep(ms) {
@@ -44,10 +38,25 @@ function sleep(ms) {
   }
 
 export const GetPostsByBage = async (page, callback) => {
-    console.log(`service page ${page}`,postsMock);
+    // page = Number(page) - 1;
     let posts = [...postsMock].splice(page * appconfig.pageSize, page * appconfig.pageSize + appconfig.pageSize);
-    await sleep(2000);
+    await sleep(800);
     callback(posts);
+    return;
+
+    // let requestUrl = domain + apiRoute + `getarticlebyid?id=${id}`;
+    // axios.get(requestUrl)
+    // .then(function (response) {
+    //     callback(response.data);
+    // })
+    // .catch((error) => console.warn(error));
+}
+
+export const GetPostById = async (postId, callback) => {
+    // page = Number(page) - 1;
+    let post = [...postsMock].find((element, index, array) => { if (element.Id === postId) return true;});
+    await sleep(800);
+    callback(post);
     return;
 
     // let requestUrl = domain + apiRoute + `getarticlebyid?id=${id}`;

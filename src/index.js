@@ -23,7 +23,7 @@ const store = createStore(
 
 const application = (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter forceRefresh>
       <App />
     </BrowserRouter>
   </Provider>

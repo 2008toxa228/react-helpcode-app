@@ -1,7 +1,7 @@
 import { SET_PAGE, NEXT_PAGE, PREVIOUS_PAGE } from "../actions/actionTypes"
 
 const initialState = {
-    page: 0,
+    // page: 1,
 }
 
 export default function PageReducer(state = initialState, action) {

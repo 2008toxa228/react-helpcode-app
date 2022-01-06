@@ -1,4 +1,6 @@
 export const Routes = {
+    SITEURL: "helpcode.com",
+
     POSTS: "/posts",
     POSTBYID: "/post/:postId",
     POSTSBYPAGE: "/posts/page/:page",
@@ -10,4 +12,8 @@ export const Routes = {
 
     CATEGORIES: "/categories",
     CATEGORIESBYPAGE: "/categories/page/:page",
+}
+
+export const PostConstants = {
+    PREVIEWCONTENTMAXLENGTH: "200"
 }
