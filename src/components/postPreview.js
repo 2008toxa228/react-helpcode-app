@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 function PostPreview (props) {
     let post = props.post;
-
+    
     return (
         <div className="postPreview">
             <div className="postTitle">

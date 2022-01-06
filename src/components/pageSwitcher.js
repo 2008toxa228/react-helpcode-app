@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { /*NavLink, useParams,*/ useRouteMatch } from "react-router-dom"
 import { useHistory } from "react-router-dom";
-import "./css/pageSwitcher.css"; 
+import "./css/pageSwitcher.css";
 import { connect } from "react-redux";
 import { setPage, nextPage, previousPage } from "../redux/actions/actions";
 import ReactPaginate from "react-paginate";
@@ -18,6 +18,11 @@ function PageSwitcher (props) {
     if (!Number.isInteger(page)) {
         page = 1;
     }
+
+    // console.log(pageMatch);
+    // console.log(page);
+    // console.log(path);
+    // console.log(url);
     
     // ToDo rewrite link disabling when page is not avaliable
 
@@ -39,7 +44,6 @@ function PageSwitcher (props) {
                     current={page} 
                     path={`${path}/page/`} 
                 />
-            
             </div>
         </div>
         
