@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import "./css/pageSwitcher.css";
 import { connect } from "react-redux";
 import { setPage, nextPage, previousPage } from "../redux/actions/actions";
-import ReactPaginate from "react-paginate";
 import Pagination from "../common/pagination";
 import { Routes } from "../common/constants";
 
@@ -16,6 +15,8 @@ function PageSwitcher (props) {
 
     let page = Number(pageMatch?.params?.page);
     if (!Number.isInteger(page)) {
+        page = 1;
+    } else if (page < 1) {
         page = 1;
     }
 

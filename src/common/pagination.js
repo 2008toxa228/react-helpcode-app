@@ -52,17 +52,29 @@ function Pagination (props) {
         path={props.path}/>
     );
 
+        console.clear();
+        console.log(props.path);
+
     return(
         <React.Fragment>
             <ul>
                 <li>
-                    <a className="paginateMovePreviousButton page-item" href={props.current ? props.path + (Number(props.current)-1) : 1}>Previous</a>
+                    <a className="paginateMovePreviousButton page-item" href={props.current 
+                        ? Number(props.current) <= 1
+                            ? 1 
+                            : props.path + (Number(props.current)-1)
+                        : 1}
+                        >Previous</a>
                 </li>            
                 {first}
                 {pages}
                 {last}
                 <li>
-                    <a className="paginateMoveNextButton page-item"href={props.current ? props.path + (Number(props.current)+1) : count}>Next</a>
+                    <a className="paginateMoveNextButton page-item"href={props.current 
+                        ? Number(props.current) >= count
+                            ? count
+                            : props.path + (Number(props.current)+1)
+                        : count}>Next</a>
                 </li>
             </ul>
         </React.Fragment>
