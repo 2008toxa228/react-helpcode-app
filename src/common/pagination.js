@@ -52,9 +52,6 @@ function Pagination (props) {
         path={props.path}/>
     );
 
-        console.clear();
-        console.log(props.path);
-
     return(
         <React.Fragment>
             <ul>
