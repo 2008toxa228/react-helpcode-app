@@ -1,6 +1,10 @@
 export const Routes = {
     SITEURL: "helpcode.com",
 
+    SIGNIN: "/signin",
+    SIGNUP: "/signup",
+    ACCOUNT: "/account",
+
     POSTS: "/posts",
     POSTBYID: "/post/:postId",
     POSTSBYPAGE: "/posts/page/:page",

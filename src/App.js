@@ -4,11 +4,15 @@ import React from 'react';
 import Layout from './hoc/layout';
 import { Routes } from "./common/constants"
 import Post from './components/post';
+import SignIn from './components/signIn';
+import SignUpComponent from './components/signup';
 
 function App() {
     return (
         <Layout>
             <Switch>
+                <Route forceRefresh path={Routes.SIGNIN} exact component={ SignIn } />
+                <Route forceRefresh path={Routes.SIGNUP} exact component={ SignUpComponent } />
                 <Route forceRefresh path={Routes.POSTBYID} exact component={ Post } />
                 <Route forceRefresh path={Routes.POSTS} component={ PostsList } />
                 <Route forceRefresh path={Routes.CATEGORIES} component={ PostsList } />

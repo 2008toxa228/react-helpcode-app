@@ -9,10 +9,8 @@ function PostsList(props) {
     const [posts, setPosts] = useState(undefined);
 
     useEffect(() => {
-        console.log("useEffect was called");
-        if (!posts) {
-            console.log("request for page",props.page);
-            helpcodePostsService.GetPostsByBage(props.page-1, setPosts);
+        if (!posts && props.page) {
+            helpcodePostsService.GetPostsByBage(props.page, setPosts);
         }
         console.log("posts", posts);
     })
