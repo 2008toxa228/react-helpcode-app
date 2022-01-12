@@ -14,7 +14,6 @@ function SignInComponent()
     let [password, setPassword] = useState("");
 
     if (response) {
-        console.error("signup response", response);
         cookies.set("accessToken", response.accessToken);
         cookies.set("refreshToken", response.refreshToken);
         window.location.assign("/");
@@ -31,16 +30,16 @@ function SignInComponent()
 
     return (
         <React.Fragment>
-        <input type="text" placeholder="email" value={email} onChange={e => setEmail(e.target.value)}/>
-        <input type="text" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
-        <button onClick={signIn}>
-            Войти
-        </button>
-        {response
-            ? response != 400
-                ? "Авторизация успешно"
-                : "Ошибка авторизации"
-            : ""}
+            <input type="text" placeholder="email" value={email} onChange={e => setEmail(e.target.value)}/>
+            <input type="text" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
+            <button onClick={signIn}>
+                Sign in
+            </button>
+            {response
+                ? response != 400
+                    ? "success"
+                    : "failure"
+                : ""}
         </React.Fragment>
     );
 }

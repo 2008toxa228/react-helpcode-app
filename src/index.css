@@ -24,6 +24,10 @@ html, body, #root {
   flex-direction: column;
 }
 
+.wrapper > * {
+  margin: 0px 8px;
+}
+
 .disabledLink {
   pointer-events: none;
   color: red;
@@ -37,4 +41,57 @@ html, body, #root {
 
 .postTitle a:hover {
   color: #86fce6;
+}
+
+.roleUser {
+  color: yellow;
+}
+.roleModerator {
+  color: orange;
+}
+.roleAdmin {
+  color: red;
+}
+
+.userPreview, .userPreview > *{
+  display: inline-flex;
+  margin-left: 5px;
+}
+.userPreview .username {
+  text-decoration: underline;
+}
+
+.username, .username a, .username a:visited {
+  color: rgb(218, 218, 178);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.customButton, .customButton a, .customButton a:visited {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.customButton {
+    display: inline-flex;
+}
+.customButton > * {
+    background-color: rgba(255, 255, 255, 0.027);
+    padding: 5px 10px;
+    margin-right: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+}
+
+.postTitle a {  
+  text-decoration: underline;
+}
+
+.categoryPreview, .categoryPreview a, .categoryPreview a:visited{
+  color: white;
+  text-decoration: underline gray;
+  margin-bottom: 3px;
+}
+.categoryPreview a {
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
 }

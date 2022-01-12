@@ -3,23 +3,23 @@ import PageSwitcher from "../components/pageSwitcher";
 import * as helpcodePostsService from "../services/helpcodePostsService";
 import Loading from "../components/loading"
 import { connect, useSelector } from "react-redux";
-import UserPreview from "../components/userPreview";
+import Category from "../components/category";
 
-function UsersList(props) {
-    const [users, setUsers] = useState();
+function CategoriesList(props) {
+    const [categories, setCategories] = useState();
 
     useEffect(() => {
-        if (!users && props.page) {
-            helpcodePostsService.GetUsers(props.page, setUsers);
+        if (!categories && props.page) {
+            helpcodePostsService.GetCategoriesByBage(props.page, setCategories);
         }
     })
 
     return (        
         <React.Fragment>
             { 
-                users 
-                    ? users.length 
-                        ? mapUsers(users)
+                categories 
+                    ? categories.length 
+                        ? mapCategories(categories)
                         : <div>page does not exist</div>
                     : <Loading />
             }
@@ -27,11 +27,11 @@ function UsersList(props) {
         </React.Fragment>
     );
 
-    function mapUsers(data) {        
-        return (data.map(user => (
-            <UserPreview
-                key={ user.id + "preview" }
-                user={ user }
+    function mapCategories(data) {        
+        return (data.map(category => (
+            <Category
+                key={ category.id + "preview" }
+                category={ category }
             />)
             )
         );
@@ -47,4 +47,4 @@ function mapDispatchToProps(dispatch) {
     return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);

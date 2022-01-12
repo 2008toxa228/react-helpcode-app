@@ -1,4 +1,4 @@
-import { SET_PAGE, NEXT_PAGE, PREVIOUS_PAGE, SET_POSTS_PREVIEWS, SET_ACCESSTOKEN, SET_REFRESHTOKEN } from "./actionTypes"
+import { SET_PAGE, NEXT_PAGE, PREVIOUS_PAGE, SET_POSTS_PREVIEWS, SET_ACCESSTOKEN, SET_REFRESHTOKEN, SET_USER } from "./actionTypes"
 
 export function setPage(number) {
     return {
@@ -37,5 +37,12 @@ export function setRefreshToken(token) {
     return {
         type: SET_REFRESHTOKEN,
         payload: token
+    }
+}
+
+export function setUser(user) {
+    return {
+        type: SET_USER,
+        payload: user
     }
 }

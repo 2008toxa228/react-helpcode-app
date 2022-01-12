@@ -7,3 +7,5 @@ export const SET_POSTS_PREVIEWS = "SET_POSTS_PREVIEWS";
 export const SET_ACCESSTOKEN = "SET_ACCESSTOKEN";
 export const SET_REFRESHTOKEN = "SET_REFRESHTOKEN";
 
+export const SET_USER = "SET_USER";
+

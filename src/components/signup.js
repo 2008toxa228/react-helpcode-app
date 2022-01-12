@@ -14,7 +14,7 @@ function SignUpComponent()
 
     function signUp() {
         setResponse(undefined);
-        SignUp({userName: login, email: email, password:password}, setResponse);
+        SignUp({userName: login, email: email, password:password}, function (e) {setResponse(e); window.location.assign("/")});
     }
 
     return (
@@ -23,12 +23,12 @@ function SignUpComponent()
         <input type="text" placeholder="email" value={email} onChange={e => setEmail(e.target.value)}/>
         <input type="text" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
         <button onClick={signUp}>
-            Зарегистрироваться
+            Sign up
         </button>
         {response
             ? response == 201
-                ? "Регистрация прошла успешно"
-                : "Ошибка регистрации"
+                ? "success"
+                : "failure"
             : ""}
         </React.Fragment>
     );

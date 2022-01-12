@@ -16,6 +16,16 @@ function Nav () {
                 <NavLink activeClassName="selectedTab" className="tab" to={Routes.USERS}>
                     Users
                 </NavLink>
+                
+                <NavLink activeClassName="selectedTab" className="tab" to={Routes.QUERY1}>
+                    query1
+                </NavLink>
+                <NavLink activeClassName="selectedTab" className="tab" to={Routes.QUERY2}>
+                    query2
+                </NavLink>
+                <NavLink activeClassName="selectedTab" className="tab" to={Routes.QUERY3}>
+                    query3
+                </NavLink>
             </div>
         </nav>
     );

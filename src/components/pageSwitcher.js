@@ -9,7 +9,7 @@ import { Routes } from "../common/constants";
 
 
 function PageSwitcher (props) {
-    let pageMatch = useRouteMatch("*" + Routes.POSTSBYPAGE);
+    let pageMatch = useRouteMatch("*" + Routes.BYPAGE);
     let { path } = useRouteMatch();
     const history = useHistory();
 

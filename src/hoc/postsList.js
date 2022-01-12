@@ -3,17 +3,24 @@ import PageSwitcher from "../components/pageSwitcher";
 import PostPreview from "../components/postPreview";
 import * as helpcodePostsService from "../services/helpcodePostsService";
 import Loading from "../components/loading"
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 function PostsList(props) {
     const [posts, setPosts] = useState(undefined);
 
-    useEffect(() => {
+    if (props.match.params.categoryId) {
+        if (!posts && props.page) {
+            helpcodePostsService.GetPostsByCategoryId(props.match.params.categoryId, props.page, setPosts);
+        }
+    } else if (props.match.params.userId) {
+        if (!posts && props.page) {
+            helpcodePostsService.GetPostsByUserId(props.match.params.userId, props.page, setPosts);
+        }
+    } else {
         if (!posts && props.page) {
             helpcodePostsService.GetPostsByBage(props.page, setPosts);
         }
-        console.log("posts", posts);
-    })
+    }
 
     return (        
         <React.Fragment>
@@ -31,7 +38,7 @@ function PostsList(props) {
     function mapPosts(data) {        
         return (data.map(post => (
             <PostPreview
-                key={ post.Id + "preview" }
+                key={ post.id + "preview" }
                 post={ post }
             />)
             )

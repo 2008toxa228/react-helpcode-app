@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./css/header.css";
 import { Routes } from "../common/constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 import { GetUser, Refresh } from "../services/helpcodePostsService";
+import { setUser } from "../redux/actions/actions";
+import UserPreview from "./userPreview";
 
 function Header (props) {
+    let dispatch = useDispatch();
     const cookies = new Cookies();
-    let [user, setUser] = useState();
+    let [user, setUserHook] = useState();
 
     let accessToken = cookies.get("accessToken");
     let refreshToken = cookies.get("refreshToken");
@@ -20,23 +23,21 @@ function Header (props) {
     });
 
     function setUserOrTryRefreshSession(user) {
-        console.log("getUser result", user)
         if (user) {
-            setUser(user)
+            setUserHook(user)
+            dispatch(setUser(user)); 
         } else {
-            Refresh(refreshToken, (response) => {
-                console.log("refresh response",response);
-                if (response){
+            Refresh(refreshToken, function (response) {
+                if (response) {
+                    console.log("response was arrived");
                     cookies.set("accessToken", response.accessToken);
                     cookies.set("refreshToken", response.refreshToken);
                     // window.location.reload();
                 } else {
-                    console.log("tokens cleared");
                     cookies.remove("accessToken");
                     cookies.remove("refreshToken");
                 };
-            });
-            
+            });            
         }
     }
 
@@ -54,14 +55,14 @@ function Header (props) {
                     { props.headerTitle }
                 </div>
 
-                {/* <div>{accessToken ? "accesToken" : "accessToken is null"}</div> */}
-                {/* <div>{refreshToken ? "refreshToken" : "refreshToken is null"}</div> */}
+                {/* <div>{accessToken ? "accesToken" : "accessToken is null"}</div>
+                <div>{refreshToken ? "refreshToken" : "refreshToken is null"}</div> */}
                 
                 <div className="headerLogin">
                     { (accessToken) 
                         ? ( <React.Fragment>
-                                <NavLink activeClassName="selectedTab accountButton" className="tab" to={Routes.ACCOUNT}>
-                                    {user?.username}
+                                <NavLink activeClassName="selectedTab accountButton" className="tab" to={Routes.USER + "/" + user?.id}>
+                                    <UserPreview user={user}/>
                                 </NavLink>
                                 <div onClick={signOut} style={{cursor: "pointer"}}>Sign out</div>
                             </React.Fragment>)
